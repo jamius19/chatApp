@@ -1,0 +1,28 @@
+.panes {
+    -fx-border-color: #d1d1d1;
+}
+
+.list {
+    -fx-background-insets: 0;
+}
+
+.list:focused {
+    -fx-border-color: #cecece;
+    -fx-background-insets: 1;
+}
+
+.paneLabel {
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-border-width: 2px;
+    -fx-padding: 5px 3px 5px 3px;
+    -fx-border-color: #e9e9e9;
+}
+
+.homeLabel {
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-border-width: 1px;
+    -fx-border-color: #dadada;
+}
+
+#sendBt {
+}

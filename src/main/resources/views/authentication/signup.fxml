@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="406.0" prefWidth="676.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jamiussiam.Authentication.Signup">
+    <children>
+        <Button fx:id="signupBt" layoutX="516.0" layoutY="347.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="94.0" text="SignUp">
+            <font>
+                <Font size="15.0" />
+            </font></Button>
+        <PasswordField fx:id="passField" layoutX="377.0" layoutY="180.0" prefHeight="34.0" prefWidth="233.0" promptText="Enter your Password" />
+        <Label layoutX="232.0" layoutY="184.0" prefHeight="26.0" prefWidth="83.0" text="Password">
+            <font>
+                <Font size="17.0" />
+            </font>
+        </Label>
+        <Label layoutX="234.0" layoutY="141.0" prefHeight="26.0" prefWidth="83.0" text="Email">
+            <font>
+                <Font size="17.0" />
+            </font>
+        </Label>
+        <TextField fx:id="emailField" layoutX="335.0" layoutY="137.0" prefHeight="34.0" prefWidth="274.0" promptText="Enter your Email" />
+        <Label fx:id="msg" layoutX="234.0" layoutY="60.0" prefHeight="26.0" prefWidth="419.0" text="Label" textFill="#0048ff" />
+      <Label layoutX="233.0" layoutY="23.0" prefHeight="26.0" prefWidth="242.0" text="Signup">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+      <Button fx:id="loginBt" layoutX="408.0" layoutY="347.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="94.0" text="&lt; Login">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Label layoutX="234.0" layoutY="97.0" prefHeight="26.0" prefWidth="83.0" text="Name">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nameField" layoutX="334.0" layoutY="93.0" prefHeight="34.0" prefWidth="274.0" promptText="Enter your Name" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="62.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/chatty.png" />
+         </image>
+      </ImageView>
+      <PasswordField fx:id="passFieldConfirm" layoutX="379.0" layoutY="225.0" prefHeight="34.0" prefWidth="233.0" promptText="Confirm your Password" />
+      <Label layoutX="234.0" layoutY="229.0" prefHeight="26.0" prefWidth="149.0" text="Confirm Password">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="234.0" layoutY="271.0" text="Security Question: Wht is your mother's maiden name?">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="237.0" layoutY="303.0" prefHeight="26.0" prefWidth="83.0" text="Answer">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="securityAnswer" layoutX="342.0" layoutY="299.0" prefHeight="34.0" prefWidth="274.0" promptText="Enter your answer" />
+
+    </children>
+</AnchorPane>

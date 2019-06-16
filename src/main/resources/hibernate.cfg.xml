@@ -4,15 +4,17 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.url">jdbc:mysql://213.136.72.26:3306/jamiussi_chat?serverTimezone=UTC</property>
-        <property name="connection.username">jamiussi_jamius1</property>
-        <property name="connection.password">!w@ntall191C</property>
+        <property name="connection.url">jdbc:mysql://127.0.0.1:33067/chatty?serverTimezone=UTC</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password"></property>
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
+        <property name="dialect">org.hibernate.dialect.MySQL55Dialect</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="show_sql">true</property>
 
         <mapping class="com.jamiussiam.Entity.User"/>
+        <mapping class="com.jamiussiam.Entity.Password"/>
+        <mapping class="com.jamiussiam.Entity.ChatGroup"/>
 
         <!-- <property name="connection.username"/> -->
         <!-- <property name="connection.password"/> -->

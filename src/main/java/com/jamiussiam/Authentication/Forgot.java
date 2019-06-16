@@ -1,4 +1,5 @@
 package com.jamiussiam.Authentication;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -9,36 +10,29 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
-public class Signup implements Initializable{
-    @FXML
-    public Button loginBt;
-
-    @FXML
-    public Button signupBt;
-
-    @FXML
-    public PasswordField passField;
-
-    @FXML
-    public PasswordField passFieldConfirm;
+public class Forgot implements Initializable {
 
     @FXML
     public TextField emailField;
 
     @FXML
-    public TextField nameField;
+    public TextField securityAnswer;
+
+    @FXML
+    public PasswordField passField;
+
+    @FXML
+    public TextField passFieldConfirm;
 
     @FXML
     public Label msg;
 
     @FXML
-    public TextField securityAnswer;
+    public Button loginBt, signupBt, resetBt;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
     }
-
 }

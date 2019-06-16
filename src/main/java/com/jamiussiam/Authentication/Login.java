@@ -15,6 +15,9 @@ public class Login implements Initializable {
     public Button loginBt;
 
     @FXML
+    public Button forgotBt;
+
+    @FXML
     public Button signupBt;
 
     @FXML
