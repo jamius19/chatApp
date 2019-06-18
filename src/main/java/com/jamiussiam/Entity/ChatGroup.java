@@ -1,8 +1,9 @@
 package com.jamiussiam.Entity;
 
-import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.*;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,8 +20,11 @@ public class ChatGroup {
     @ManyToOne
     private User admin;
 
-    @ManyToMany
+    @ManyToMany()
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<User> users = new ArrayList<>();
+
+
 
     public List<User> getUsers() {
         return users;
@@ -29,7 +33,6 @@ public class ChatGroup {
     public void setUsers(List<User> users) {
         this.users = users;
     }
-
 
     public int getId() {
         return id;

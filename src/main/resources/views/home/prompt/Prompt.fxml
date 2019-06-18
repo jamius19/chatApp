@@ -8,13 +8,14 @@
 
 <AnchorPane prefHeight="165.0" prefWidth="463.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jamiussiam.Home.Prompt.Prompt">
    <children>
-      <Label fx:id="qusField" layoutX="51.0" layoutY="34.0" text="What is your file name?">
+      <Label fx:id="qusField" contentDisplay="CENTER" layoutX="43.0" layoutY="7.0" prefHeight="79.0" prefWidth="406.0" text="What is your Question?">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="ansField" layoutX="51.0" layoutY="66.0" prefHeight="25.0" prefWidth="373.0" promptText="Enter your response here...." />
-      <Button fx:id="submitBt" layoutX="346.0" layoutY="110.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" text="Submit" />
-      <Button fx:id="cancelBt" layoutX="257.0" layoutY="110.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" text="Cancel" />
+      <TextField fx:id="ansField" layoutX="45.0" layoutY="94.0" prefHeight="25.0" prefWidth="379.0" promptText="Enter your response here...." />
+      <Button fx:id="submitBt" layoutX="346.0" layoutY="130.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" text="Submit" />
+      <Button fx:id="cancelBt" layoutX="257.0" layoutY="130.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" text="Cancel" />
+      <Label fx:id="msg" layoutX="22.0" layoutY="136.0" text="What is your file name?" textFill="#001eff" />
    </children>
 </AnchorPane>

@@ -64,14 +64,20 @@
             </VBox>
          </children>
       </HBox>
-      <Label alignment="CENTER_RIGHT" layoutX="556.0" layoutY="39.0" prefHeight="36.0" prefWidth="346.0" styleClass="homeLabel" text="Home">
+      <Label fx:id="welcome" alignment="CENTER_RIGHT" layoutX="355.0" layoutY="24.0" prefHeight="36.0" prefWidth="547.0" styleClass="homeLabel" text="Home">
          <font>
             <Font size="21.0" />
          </font>
       </Label>
-      <Button fx:id="createGroupBt" layoutX="815.0" layoutY="83.0" mnemonicParsing="false" text="Create Group" />
-      <Button fx:id="deleteGroupBt" disable="true" layoutX="721.0" layoutY="83.0" mnemonicParsing="false" text="Delete Group" />
-      <Button fx:id="leaveGroupBt" disable="true" layoutX="629.0" layoutY="83.0" mnemonicParsing="false" text="Leave Group" />
-      <Button fx:id="logoutBt" layoutX="556.0" layoutY="83.0" mnemonicParsing="false" text="Logout" />
+      <Button fx:id="createGroupBt" layoutX="815.0" layoutY="65.0" mnemonicParsing="false" text="Create Group" />
+      <Button fx:id="deleteGroupBt" disable="true" layoutX="722.0" layoutY="96.0" mnemonicParsing="false" text="Delete Group" />
+      <Button fx:id="leaveGroupBt" disable="true" layoutX="617.0" layoutY="65.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Leave Group" />
+      <Button fx:id="logoutBt" layoutX="448.0" layoutY="65.0" mnemonicParsing="false" text="Logout" />
+      <Label fx:id="msg" alignment="CENTER_RIGHT" layoutX="220.0" layoutY="6.0" prefHeight="17.0" prefWidth="682.0" text="Label" textFill="#0071ff" />
+      <Button fx:id="addMemberBt" disable="true" layoutX="815.0" layoutY="96.0" mnemonicParsing="false" text="Add Member" />
+      <Button fx:id="joinGroupBt" layoutX="721.0" layoutY="65.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" text="Join Group" />
+      <Button fx:id="renameBt" disable="true" layoutX="617.0" layoutY="96.0" mnemonicParsing="false" text="Rename Group" />
+      <Label layoutX="541.0" layoutY="69.0" text="Group Tasks" />
+      <Label layoutX="360.0" layoutY="69.0" text="Account Tasks" />
    </children>
 </AnchorPane>

@@ -24,6 +24,9 @@ public class User {
 
     private String sqAnswer;
 
+    @Transient
+    private boolean isAdmin;
+
     @OneToMany(mappedBy = "user")
     private List<Password> prevPasswords = new ArrayList<>();
 
@@ -34,6 +37,13 @@ public class User {
     @OneToMany(mappedBy = "admin")
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<ChatGroup> adminGroups = new ArrayList<>();
+
+
+
+
+
+
+
 
     public List<ChatGroup> getAdminGroups() {
         return adminGroups;
@@ -99,15 +109,16 @@ public class User {
         this.prevPasswords = prevPasswords;
     }
 
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
+
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", sqAnswer='" + sqAnswer + '\'' +
-                ", prevPasswords=" + prevPasswords +
-                '}';
+        return email + " " + (isAdmin? " (Admin)" : "");
     }
 }

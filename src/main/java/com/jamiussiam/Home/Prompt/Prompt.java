@@ -26,10 +26,7 @@ public class Prompt implements Initializable {
     public TextField ansField;
 
     @FXML
-    public Label qusField;
-
-    private OnPromptComplete promptComplete;
-    private String question;
+    public Label qusField, msg;
 
 
     public enum SubmitType {
@@ -38,33 +35,37 @@ public class Prompt implements Initializable {
     }
 
     public static interface OnPromptComplete {
-        void onComplete(String value, SubmitType submitType);
+        void onComplete(String value, SubmitType submitType, Prompt promptController, Stage stage);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-
+        msg.setVisible(false);
     }
 
-    public void display (String question, String title, boolean noAnswer, OnPromptComplete promptComplete) throws Exception{
+    public void display(String question, String title, boolean noAnswer, OnPromptComplete promptComplete) throws Exception {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/home/prompt/Prompt.fxml"));
         Parent root = loader.load();
 
         Prompt controller = loader.getController();
 
-        this.question = question;
-        this.promptComplete = promptComplete;
-
+        if (noAnswer) {
+            controller.ansField.setVisible(false);
+            controller.submitBt.setText("Proceed");
+        }
 
         controller.qusField.setText(question);
 
-        controller.submitBt.setOnMouseClicked(event ->
-                promptComplete.onComplete(controller.ansField.getText(), SubmitType.Submit));
+        controller.submitBt.setOnMouseClicked(event -> {
+            promptComplete.onComplete(controller.ansField.getText(), SubmitType.Submit, controller, stage);
+            //stage.close();
+        });
 
-        controller.cancelBt.setOnMouseClicked(event ->
-                promptComplete.onComplete(controller.ansField.getText(), SubmitType.Cancel));
+        controller.cancelBt.setOnMouseClicked(event -> {
+            promptComplete.onComplete(controller.ansField.getText(), SubmitType.Cancel, controller, stage);
+            //stage.close();
+        });
 
         stage.initModality(Modality.APPLICATION_MODAL);
         Scene scene = new Scene(root, 463, 165);
@@ -73,4 +74,5 @@ public class Prompt implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
 }
