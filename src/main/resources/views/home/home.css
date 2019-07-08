@@ -26,3 +26,8 @@
 
 #sendBt {
 }
+
+#sendBox {
+    -fx-padding: 3px;
+    -fx-spacing: 5px;
+}

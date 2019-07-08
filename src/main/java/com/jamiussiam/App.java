@@ -2,9 +2,7 @@ package com.jamiussiam;
 
 import com.jamiussiam.Authentication.Forgot;
 import com.jamiussiam.Authentication.Signup;
-import com.jamiussiam.Entity.ChatGroup;
-import com.jamiussiam.Entity.Password;
-import com.jamiussiam.Entity.User;
+import com.jamiussiam.Entity.*;
 import com.jamiussiam.Authentication.Login;
 import com.jamiussiam.Home.Home;
 import com.jamiussiam.Home.Prompt.Prompt;
@@ -58,6 +56,8 @@ public class App extends Application {
         Configuration configuration = new Configuration().configure()
                 .addAnnotatedClass(User.class)
                 .addAnnotatedClass(Password.class)
+                .addAnnotatedClass(Message.class)
+                .addAnnotatedClass(File.class)
                 .addAnnotatedClass(ChatGroup.class);
 
         StandardServiceRegistry registryBuilder = new StandardServiceRegistryBuilder().
@@ -466,6 +466,7 @@ public class App extends Application {
                                 ChatGroup currentChatGroupTemp = session.get(ChatGroup.class, currentChatGroup.getId());
                                 User userTemp = session.get(User.class, currentUser.getId());
 
+                                boolean isAdmin = currentChatGroupTemp.getAdmin().getId() == userTemp.getId();
                                 /*if (isAdmin) {
                                     if (currentChatGroup.getUsers().size() > 1) {
                                         User nextAdmin = currentChatGroup.getUsers().get(1);
@@ -478,11 +479,13 @@ public class App extends Application {
                                     }
                                 }*/
 
-                                if (currentChatGroupTemp.getUsers().size() > 1) {
-                                    User nextAdmin = currentChatGroupTemp.getUsers().get(1);
-                                    currentChatGroupTemp.setAdmin(nextAdmin);
-                                } else {
-                                    currentChatGroupTemp.setAdmin(null);
+                                if (isAdmin) {
+                                    if (currentChatGroupTemp.getUsers().size() > 1) {
+                                        User nextAdmin = currentChatGroupTemp.getUsers().get(1);
+                                        currentChatGroupTemp.setAdmin(nextAdmin);
+                                    } else {
+                                        currentChatGroupTemp.setAdmin(null);
+                                    }
                                 }
 
                                 currentChatGroupTemp.getUsers().remove(userTemp);
@@ -588,14 +591,14 @@ public class App extends Application {
 
                                     try {
                                         System.out.println("users " + targetGroup.getUsers());
-                                    } catch (Exception e){
+                                    } catch (Exception e) {
                                         System.out.println("targetgroup null");
                                     }
 
                                     boolean containsUser = false;
 
-                                    if(targetGroup != null){
-                                        for(User user : targetGroup.getUsers()){
+                                    if (targetGroup != null) {
+                                        for (User user : targetGroup.getUsers()) {
                                             if (user.getEmail().toLowerCase().equals(currentUser.getEmail().toLowerCase())) {
                                                 containsUser = true;
                                             }
@@ -668,6 +671,25 @@ public class App extends Application {
             }
         });
 
+        controller.sendBt.setOnMouseClicked(event -> {
+            if (controller.msgEdit.getText().isEmpty()) {
+                FlashMessage("Please enter a message to send", controller.msg, 5);
+            } else {
+                Message message = new Message();
+                message.setMessage(controller.msgEdit.getText());
+                message.setAuthor(currentUser);
+                ChatGroup currentGroup = controller.groupList.getSelectionModel().getSelectedItem();
+                message.setChatGroup(currentGroup);
+
+                Session session = sessionFactory.openSession();
+                session.beginTransaction();
+                session.save(message);
+                session.getTransaction().commit();
+                session.close();
+
+                controller.msgList.getItems().add(message);
+            }
+        });
 
         Scene scene = new Scene(root, 924, 563);
         primaryStage.setResizable(false);
@@ -678,6 +700,8 @@ public class App extends Application {
 
 
     private void ReloadGroups(ListView<ChatGroup> chatGroupListView) {
+
+
         UpdateUserDetails();
         chatGroupListView.getItems().clear();
 
@@ -718,6 +742,13 @@ public class App extends Application {
         chatGroupAdmin = currentUser.getAdminGroups();
     }
 
+    private void UpdateMessageList(ListView<Message> msgList, List<Message> msgs) {
+        msgList.getItems().clear();
+
+        for (Message msg : msgs) {
+            msgList.getItems().add(msg);
+        }
+    }
 
     private void FlashMessage(String message, Label label, int time) {
         if (hideMsg != null)
@@ -734,10 +765,26 @@ public class App extends Application {
 
     private void UpdateButtonStatus(Home controller) {
         boolean isAdmin = chatGroupAdmin.contains(controller.groupList.getSelectionModel().getSelectedItem());
+        boolean selected = controller.groupList.getSelectionModel().getSelectedItem() == null;
+
+        System.out.println("Selected " + selected);
+
+        if (!selected) {
+            ChatGroup currentGroup = controller.groupList.getSelectionModel().getSelectedItem();
+            Session session = sessionFactory.openSession();
+            ChatGroup currentGroupTemp = session.get(ChatGroup.class, currentGroup.getId());
+            UpdateMessageList(controller.msgList, currentGroupTemp.getMessages());
+        } else {
+            controller.msgList.getItems().clear();
+        }
+
         controller.deleteGroupBt.setDisable(!isAdmin);
         controller.addMemberBt.setDisable(!isAdmin);
+        controller.attachBt.setDisable(selected);
+        controller.msgEdit.setDisable(selected);
+        controller.sendBt.setDisable(selected);
         controller.renameBt.setDisable(!isAdmin);
-        controller.leaveGroupBt.setDisable(controller.groupList.getSelectionModel().getSelectedItem() == null);
+        controller.leaveGroupBt.setDisable(selected);
         ReloadMembersList(controller.membersList, controller.groupList);
     }
 }

@@ -3,6 +3,7 @@ package com.jamiussiam.Entity;
 import org.hibernate.annotations.*;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,11 @@ public class ChatGroup {
     @ManyToMany()
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<User> users = new ArrayList<>();
+
+
+    @OneToMany(mappedBy = "chatGroup", cascade = CascadeType.REMOVE)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Message> messages = new ArrayList<>();
 
 
 
@@ -56,6 +62,14 @@ public class ChatGroup {
 
     public void setAdmin(User admin) {
         this.admin = admin;
+    }
+
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
     }
 
     @Override
